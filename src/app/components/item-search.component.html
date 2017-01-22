@@ -1,0 +1,9 @@
+<div id="search-component">
+  <div>
+  <label for="search-box">Movie search</label>
+  <input autocomplete="off" #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+    <div *ngFor="let item of items | async" (click)="gotoDetail(item)" class="search-result">
+      {{item.title}}
+    </div>
+  </div>
+</div>

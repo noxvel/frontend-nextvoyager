@@ -1,0 +1,81 @@
+/* items class */
+
+.items-group{
+  display: inline-block;
+}
+.item {
+  display: block;
+  float: left;
+  margin: 1em;
+  list-style-type: none;
+  padding: 20px;
+  width: auto;
+  background-color: #EEE;
+  border-radius: 10px;
+    text-align: center;
+}
+.item .title {
+  font-size: 150%;
+  text-align: center;
+}
+.item .poster {
+  width:100px;
+  height:150px;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+}
+.item .detail {
+  margin-top: 1em;
+}
+.poster > img {
+  height:100%;
+  position: relative;
+  min-height:100%;
+  min-width:100%;
+}
+
+
+/*rating*/
+
+.rating {
+  z-index: 20;
+  font-size: 1.5em;
+  position: relative;
+  color: #317768
+}
+
+.burst-12 {
+    background: #1ed9b1;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    text-align: center;
+    bottom: -5%;
+    right: -5%;
+    position: absolute;
+}
+.burst-12:before, .burst-12:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 30px;
+    width: 30px;
+    background: #1ed9b1;
+
+}
+.burst-12:before {
+    -webkit-transform: rotate(30deg);
+       -moz-transform: rotate(30deg);
+        -ms-transform: rotate(30deg);
+         -o-transform: rotate(30deg);
+         transform: rotate(30deg);
+}
+.burst-12:after {
+    -webkit-transform: rotate(60deg);
+       -moz-transform: rotate(60deg);
+        -ms-transform: rotate(60deg);
+         -o-transform: rotate(60deg);
+         transform: rotate(60deg);
+}

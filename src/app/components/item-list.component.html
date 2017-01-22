@@ -1,0 +1,30 @@
+<div class="items-group">
+  <div class="item" *ngFor="let item of items">
+    <div class="title">{{item.title}}</div>
+    <div class="poster">
+      <img [src]="baseUrl + item.poster_src" alt="">
+      <div class="burst-12">
+        <span class="rating"> {{item.rating}} </span>
+      </div>
+    </div>
+    <div class="detail">
+      <a class="btn btn-info btn-md" role="button" [routerLink]="['./', item.id]">Details</a>
+      <button class="delete btn btn-danger" (click)="delete(item); $event.stopPropagation()">Delete</button>
+    </div>
+  </div>
+  <div class="item-control">
+    <form action="" class="form-inline">
+      <div class="form-group">
+        <label for="movieTitle" class="sr-only">Title</label>
+        <input type="text" id="movieTitle" #movieTitle class="form-control" placeholder="Title">
+      </div>
+      <div class="form-group">
+        <label for="movieRating" class="sr-only"></label>
+        <input type="text" id="movieRating" #movieRating class="form-control" placeholder="Rating">
+      </div>
+      <button (click)="add(movieTitle.value, movieRating.value); movieTitle.value = ''; movieRating.value = '' " type="submit" class="btn btn-primary btn-lg">Add</button>
+      <!--<div [hidden]="movieTitle.value != ''" class="alert alert-warning" role="alert">Please enter Title for Movie</div>
+      <div [hidden]="movieTitle.value != ''" class="alert alert-warning" role="alert">Please enter Rating for Movie</div>-->
+    </form>
+  </div>
+</div>

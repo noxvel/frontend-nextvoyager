@@ -1,0 +1,38 @@
+<div *ngIf="item">
+  <h2>{{item.title}}</h2>
+  <div>
+    <label>id: </label>{{item.id}}
+  </div>
+  <div class="poster"><img [src]="baseUrl + item.poster_src" alt=""></div>
+  <label>
+    Rating
+  </label>
+  <div class="rating">
+    <span [class.grade]="item.rating === 5" (click)="changeRate(item, 5)">☆</span>
+    <span [class.grade]="item.rating === 4" (click)="changeRate(item, 4)">☆</span>
+    <span [class.grade]="item.rating === 3" (click)="changeRate(item, 3)">☆</span>
+    <span [class.grade]="item.rating === 2" (click)="changeRate(item, 2)">☆</span>
+    <span [class.grade]="item.rating === 1" (click)="changeRate(item, 1)">☆</span>
+  </div>
+  <button class="btn btn-large" (click)="goBack()">Back</button>
+  <div id="create-review">
+    <div class="review-text" *ngIf="currentReview.text_1">
+      <span>{{currentReview.text_1}}</span>
+      <button (click)="currentReview.text_1 = ''">Delete</button>
+    </div>
+    <div class="review-text" *ngIf="currentReview.text_2">
+      <span>{{currentReview.text_2}}</span>
+      <button (click)="currentReview.text_2 = ''">Delete</button>
+    </div>
+    <div class="review-text" *ngIf="currentReview.text_3">
+      <span>{{currentReview.text_3}}</span>
+      <button (click)="currentReview.text_3 = ''">Delete</button>
+    </div>
+    <textarea class="form-control" name="reviewInput" id="reviewInput" #reviewInput cols="70" rows="5"></textarea>
+    <button (click)="addText(reviewInput.value)">Add Phrase</button>
+    <button (click)="addReview(currentReview)">Publish Review</button>
+  </div>
+  <div class="reviews" *ngFor="let review of reviews">
+    <item-review [review]="review"></item-review>
+  </div>
+</div>

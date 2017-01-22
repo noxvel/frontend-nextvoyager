@@ -1,3 +1,23 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container-fruid">
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a routerLink="dashboard" class="navbar-brand">NextVoyager</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a [routerLink]="['movies']" routerLinkActive="active">Movies</a></li>
+        <li><a [routerLink]="['games']" routerLinkActive="active">Games</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="row row-centered">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-8">
+      <div class="col-centered">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    <div class="col-xs-2">
+    </div>
+  </div>
