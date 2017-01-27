@@ -1,3 +1,4 @@
+
 <div class="items-group">
   <div class="item" *ngFor="let item of items">
     <div class="title">{{item.title}}</div>
@@ -12,19 +13,18 @@
       <button class="delete btn btn-danger" (click)="delete(item); $event.stopPropagation()">Delete</button>
     </div>
   </div>
-  <div class="item-control">
+  
+  <div id="item-control" class="container">
     <form action="" class="form-inline">
-      <div class="form-group">
-        <label for="movieTitle" class="sr-only">Title</label>
-        <input type="text" id="movieTitle" #movieTitle class="form-control" placeholder="Title">
-      </div>
-      <div class="form-group">
-        <label for="movieRating" class="sr-only"></label>
-        <input type="text" id="movieRating" #movieRating class="form-control" placeholder="Rating">
-      </div>
-      <button (click)="add(movieTitle.value, movieRating.value); movieTitle.value = ''; movieRating.value = '' " type="submit" class="btn btn-primary btn-lg">Add</button>
-      <!--<div [hidden]="movieTitle.value != ''" class="alert alert-warning" role="alert">Please enter Title for Movie</div>
+      <label for="movieTitle" class="sr-only">Title</label>
+      <input type="text" id="movieTitle" #movieTitle class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Title">
+      <label for="movieRating" class="sr-only"></label>
+      <input type="text" id="movieRating" #movieRating class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Rating">
+      <button (click)="add(movieTitle.value, movieRating.value); movieTitle.value = ''; movieRating.value = '' " type="submit"
+        class="btn btn-primary btn-lg">Add</button>
+        <!--<div [hidden]="movieTitle.value != ''" class="alert alert-warning" role="alert">Please enter Title for Movie</div>
       <div [hidden]="movieTitle.value != ''" class="alert alert-warning" role="alert">Please enter Rating for Movie</div>-->
     </form>
   </div>
+
 </div>

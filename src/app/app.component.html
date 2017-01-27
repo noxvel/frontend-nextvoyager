@@ -1,23 +1,32 @@
 <div class="container-fruid">
-  <nav class="navbar navbar-default navbar-static-top">
-    <div class="container-fluid">
-      <div class="navbar-header">
+  <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <div class="container">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
         <a routerLink="dashboard" class="navbar-brand">NextVoyager</a>
-      </div>
-      <ul class="nav navbar-nav">
-        <li><a [routerLink]="['movies']" routerLinkActive="active">Movies</a></li>
-        <li><a [routerLink]="['games']" routerLinkActive="active">Games</a></li>
-      </ul>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['movies']" routerLinkActive="active">Movies</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['games']" routerLinkActive="active">Games</a>
+            </li>
+          </ul>
+          <item-search></item-search>
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="#">Sign up</a>
+            <a class="nav-item nav-link" href="#">Log in</a>
+          </div>
+        </div>
     </div>
   </nav>
-  <div class="row row-centered">
-    <div class="col-xs-2">
-    </div>
-    <div class="col-xs-8">
-      <div class="col-centered">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
-    <div class="col-xs-2">
+
+  <div class="container">
+    <div class="">
+      <router-outlet></router-outlet>
     </div>
   </div>
+</div>
