@@ -7,6 +7,8 @@ import { DashboardComponent } from './components/dashboard.component'
 import { GameComponent } from './components/game.component'
 import { MovieComponent } from './components/movie.component'
 import { ItemDetailComponent } from './components/item-detail.component'
+import { LoginComponent } from './login/login.component'
+import { SignupComponent } from './signup/signup.component'
 
 const routes: Routes = [
     { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -22,6 +24,8 @@ const routes: Routes = [
         ],
       data: { type: "games"}
     },
+    { path: 'login', component: LoginComponent},
+    { path: 'signup', component: SignupComponent},
     { path: 'dashboard', component: DashboardComponent}
 ]
 

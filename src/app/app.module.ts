@@ -16,7 +16,9 @@ import { ItemReviewComponent } from './components/item-review.component'
 import { ItemService } from './item.service'
 import { ItemSearchService } from './item-search.service'
 
-import { AppRoutingModule } from './app-routing.module'
+import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component'
 
 @NgModule({
   imports: [
@@ -33,7 +35,11 @@ import { AppRoutingModule } from './app-routing.module'
     ItemListComponent,
     DashboardComponent,
     ItemSearchComponent,
-    ItemReviewComponent
+    ItemReviewComponent,
+    LoginComponent,
+    SignupComponent,
+    SignupComponent,
+    SignupComponent
   ],
   providers: [
     ItemService,
