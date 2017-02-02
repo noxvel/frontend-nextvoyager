@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
 import { Location }                 from '@angular/common';
 import { ItemService } from '../item.service'
+import { AuthenticationService } from '../_services/authentication.service'
 import 'rxjs/add/operator/switchMap';
 
 import { Review } from '../models/review.model';
@@ -16,17 +17,20 @@ import { Review } from '../models/review.model';
 
 export class ItemDetailComponent implements OnInit{
     
+    constructor(
+        private itemService: ItemService,
+        private route: ActivatedRoute,
+        private location: Location,
+        private authentication: AuthenticationService,
+    ){}
+
     item: Item;
     reviews: Review[];
     typeOfItems: string;
     currentReview: Review = new Review;
     baseUrl: string;
+    username: string;
 
-    constructor(
-        private itemService: ItemService,
-        private route: ActivatedRoute,
-        private location: Location,
-    ){}
 
     ngOnInit(): void {
         this.baseUrl = this.itemService.baseUrl;
@@ -43,6 +47,7 @@ export class ItemDetailComponent implements OnInit{
                             //console.log(data.type);
                             this.typeOfItems = data.type;
                         });
+        this.username = this.authentication.username;
     }
 
     addText(text: string){
@@ -58,7 +63,7 @@ export class ItemDetailComponent implements OnInit{
 
     addReview() {
         if (!this.currentReview.text_1 || !this.currentReview.text_2 || !this.currentReview.text_3) return;
-        this.itemService.addReview(this.currentReview.text_1,this.currentReview.text_2,this.currentReview.text_3,this.item.id)
+        this.itemService.addReview(this.currentReview.text_1,this.currentReview.text_2,this.currentReview.text_3,this.item.id,this.username)
                     .then(review => this.reviews.push(review))
         
         this.currentReview = new Review;

@@ -20,6 +20,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component'
 
+import { AuthGuard } from './_guards/auth.guard';
+import { AuthenticationService } from './_services/authentication.service';
+import { UserService } from './_services/user.service';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -43,7 +47,11 @@ import { SignupComponent } from './signup/signup.component'
   ],
   providers: [
     ItemService,
-    ItemSearchService
+    ItemSearchService,
+
+    AuthGuard,
+    AuthenticationService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

@@ -4,20 +4,24 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/toPromise';
 import { Review } from './models/review.model'
 
+import { AuthenticationService } from './_services/authentication.service';
 
 @Injectable()
 export class ItemService{
 
-    //private baseUrl = 'http://127.0.0.1:8000/';
-    public baseUrl = 'http://35.156.228.133:8000/';
+    constructor(private http: Http,
+                private authenticationService: AuthenticationService){ }
+
+    public baseUrl = 'http://127.0.0.1:8000/';
+    // public baseUrl = 'http://35.156.228.133:8000/';
     private moviesUrl = this.baseUrl + 'item_list/movie/'; // URL to web api
     private gamesUrl = this.baseUrl +'item_list/game/'; // URL to web api
     private itemUrl = this.baseUrl + 'item/';
     private itemCreateUrl = this.baseUrl + 'item_list/game/';
-    private headers = new Headers({'Content-Type': 'application/json'});
+    private headers = new Headers({'Content-Type': 'application/json',
+                                    'Authorization': 'JWT ' + this.authenticationService.token });
 
 
-    constructor(private http: Http){ }
 
     private handleError (error: any): Promise<any> {
         console.error('An error occurred', error); // for demo purposes only
@@ -80,9 +84,9 @@ export class ItemService{
                     .catch(this.handleError);   
     }
 
-    addReview(text_1: string, text_2: string, text_3: string, itemId: number): Promise<Review> {
+    addReview(text_1: string, text_2: string, text_3: string, itemId: number, username: string): Promise<Review> {
         return this.http
-            .post(`${this.itemUrl}${itemId}/review/`, JSON.stringify({text_1: text_1, text_2: text_2, text_3: text_3, item: itemId}), {headers: this.headers})
+            .post(`${this.itemUrl}${itemId}/review/`, JSON.stringify({text_1: text_1, text_2: text_2, text_3: text_3, item: itemId, user: username}), {headers: this.headers})
             .toPromise()
             .then(res => res.json())
             .catch(this.handleError);
