@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs'; 
 
-import { Movie } from './models/movie.model'
+import { Movie } from '../_models/movie.model'
 
 @Injectable()
 export class ItemSearchService {

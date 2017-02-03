@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ItemService } from '../item.service'
+import { ItemService } from '../_services/item.service'
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -20,9 +20,13 @@ export class ItemListComponent {
 
     getItems(): void{
         if (this.typeOfItems === 'movies')
-            this.itemService.getMovies().then(movies => this.items = movies);
+            this.itemService.getMovies()
+                .subscribe(movies => this.items = movies,
+                               err => console.log(err));
         else if(this.typeOfItems === 'games')    
-            this.itemService.getGames().then(games => this.items = games);
+            this.itemService.getGames()
+                .subscribe(games => this.items = games,
+                                err => console.log(err));
     }
 
     ngOnInit(){      

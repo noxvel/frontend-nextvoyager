@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
 import { Location }                 from '@angular/common';
-import { ItemService } from '../item.service'
+import { ItemService } from '../_services/item.service'
 import { AuthenticationService } from '../_services/authentication.service'
 import 'rxjs/add/operator/switchMap';
 
-import { Review } from '../models/review.model';
+import { Review } from '../_models/review.model';
 
 @Component({
     moduleId: module.id,
@@ -39,7 +39,9 @@ export class ItemDetailComponent implements OnInit{
             .switchMap((params: Params) => this.itemService.getItem(+params['id']))
             .subscribe(item => {
                 this.item = item;
-                this.itemService.getReview(item.id).then(reviews => this.reviews = reviews); 
+                this.itemService.getReview(item.id)
+                        .subscribe(reviews => this.reviews = reviews,
+                                    err => console.log(err)); 
             });
 
         this.route.parent.data
@@ -64,7 +66,8 @@ export class ItemDetailComponent implements OnInit{
     addReview() {
         if (!this.currentReview.text_1 || !this.currentReview.text_2 || !this.currentReview.text_3) return;
         this.itemService.addReview(this.currentReview.text_1,this.currentReview.text_2,this.currentReview.text_3,this.item.id,this.username)
-                    .then(review => this.reviews.push(review))
+                    .subscribe(review => this.reviews.push(review),
+                               err => console.log(err))
         
         this.currentReview = new Review;
     }

@@ -7,7 +7,9 @@ import 'rxjs/add/operator/map'
 export class AuthenticationService {
     public token: string;
     public username: string;
-    public baseUrl = 'http://127.0.0.1:8000/';
+    // public baseUrl = 'http://127.0.0.1:8000/';
+    public baseUrl = 'http://35.156.228.133:8000/';
+
     private headers = new Headers({'Content-Type': 'application/json'});
 
     constructor(private http: Http) {

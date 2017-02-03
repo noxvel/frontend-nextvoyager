@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Game } from '../models/game.model'
-import { ItemService } from '../item.service'
+import { Game } from '../_models/game.model'
+import { ItemService } from '../_services/item.service'
 
 @Component({
     moduleId: module.id,

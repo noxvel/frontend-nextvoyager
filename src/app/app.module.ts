@@ -13,8 +13,8 @@ import { ItemDetailComponent } from './components/item-detail.component'
 import { ItemSearchComponent } from './components/item-search.component'
 import { ItemReviewComponent } from './components/item-review.component'
 
-import { ItemService } from './item.service'
-import { ItemSearchService } from './item-search.service'
+import { ItemService } from './_services/item.service'
+import { ItemSearchService } from './_services/item-search.service'
 
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
@@ -41,8 +41,6 @@ import { UserService } from './_services/user.service';
     ItemSearchComponent,
     ItemReviewComponent,
     LoginComponent,
-    SignupComponent,
-    SignupComponent,
     SignupComponent
   ],
   providers: [

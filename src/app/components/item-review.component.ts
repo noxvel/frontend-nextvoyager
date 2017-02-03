@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Review } from '../models/review.model';
+import { Review } from '../_models/review.model';
 
 @Component({
     moduleId: module.id,
