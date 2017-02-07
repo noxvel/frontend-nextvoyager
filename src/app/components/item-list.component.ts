@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ItemService } from '../_services/item.service'
+import { ItemService } from '../_services/item.service';
+import { AuthGuard } from '../_guards/auth.guard';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -7,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
     selector: 'item-list',
     templateUrl: 'item-list.component.html',
     styleUrls: ['item-list.component.css'],
-    providers: [ItemService]
+    providers: [ItemService, AuthGuard]
 })
 
 export class ItemListComponent {
@@ -16,7 +17,8 @@ export class ItemListComponent {
     private baseUrl: string;
 
     constructor(private itemService: ItemService,
-                private route: ActivatedRoute) {}
+                private route: ActivatedRoute,
+                private authGuard: AuthGuard) {}
 
     getItems(): void{
         if (this.typeOfItems === 'movies')
@@ -53,17 +55,19 @@ export class ItemListComponent {
         title = title.trim();
         if (!title || !+rating) { return };
         this.itemService.createItem(title, rating, type)
-            .then(item => {
+            .subscribe(item => {
                 this.items.push(item);
-            });
+            },
+            error => {console.log(error);
+                    this.authGuard.canActivate()});
     }
 
     delete(item: Item): void {
-        this.itemService
-            .deleteItem(item.id)
-            .then(() => {
+        this.itemService.deleteItem(item.id)
+            .subscribe(() => {
                 this.items = this.items.filter(i => i != item);
-            })
+            },
+            error => console.log(error))
     }
 
 
